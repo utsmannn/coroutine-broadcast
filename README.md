@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"></a>
+  <a href="https://bintray.com/kucingapes/utsman/com.utsman.broadcast/_latestVersion"><img alt="License" src="https://api.bintray.com/packages/kucingapes/utsman/com.utsman.broadcast/images/download.svg"></a>
   <a href="https://github.com/utsmannn/coroutine-broadcast/pulls"><img alt="Pull request" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a>
   <a href="https://kotlinlang.org/docs/reference/coroutines-overview.html"><img alt="Coroutine docs" src="https://img.shields.io/badge/Kotlin-Coroutine-blue?logo=kotlin&style=flat"></a>
   <a href="https://twitter.com/utsmannn"><img alt="Twitter" src="https://img.shields.io/twitter/follow/utsmannn"></a>
@@ -13,7 +14,28 @@
 
 ### Download
 ```groovy
-// on progress
+// add in your repository
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+        // this repo
+        maven { url 'https://dl.bintray.com/kucingapes/utsman' }
+    }
+}
+
+// add in your dependencies
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // kotlin coroutine required
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
+
+    // add broadcast lib
+    implementation 'com.utsman.broadcast:broadcast:1.0.0'
+}
 ```
 
 ### Usage
@@ -29,7 +51,7 @@ Broadcast.with(GlobalScope).observer { key, data ->
 
 #### Post data
 ```kotlin
-Broadcast.with(GlobalScope).post("your key", dataMessage)
+Broadcast.with(GlobalScope).post("your key", "your data any type")
 ````
 
 ### Sample Activity
