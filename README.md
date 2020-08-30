@@ -8,6 +8,10 @@
   <a href="https://bintray.com/kucingapes/utsman/com.utsman.broadcast/_latestVersion"><img alt="License" src="https://api.bintray.com/packages/kucingapes/utsman/com.utsman.broadcast/images/download.svg"></a>
   <a href="https://github.com/utsmannn/coroutine-broadcast/pulls"><img alt="Pull request" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat"></a>
   <a href="https://kotlinlang.org/docs/reference/coroutines-overview.html"><img alt="Coroutine docs" src="https://img.shields.io/badge/Kotlin-Coroutine-blue?logo=kotlin&style=flat"></a>
+  <a href="https://app.codacy.com/manual/utsmannn/coroutine-broadcast?utm_source=github.com&utm_medium=referral&utm_content=utsmannn/coroutine-broadcast&utm_campaign=Badge_Grade_Dashboard"><img alt="Codacy reviewed" src="https://api.codacy.com/project/badge/Grade/dd698d25d031408195d4aa21cf629cbb"></a>
+</p>
+
+<p align="center">
   <a href="https://twitter.com/utsmannn"><img alt="Twitter" src="https://img.shields.io/twitter/follow/utsmannn"></a>
   <a href="https://github.com/utsmannn"><img alt="Github" src="https://img.shields.io/github/followers/utsmannn?label=follow&style=social"></a>
   <h3 align="center">Lightweight library for broadcasting using kotlin coroutine</h3>
