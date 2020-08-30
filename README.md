@@ -15,6 +15,8 @@
 
 ---
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd698d25d031408195d4aa21cf629cbb)](https://app.codacy.com/manual/utsmannn/coroutine-broadcast?utm_source=github.com&utm_medium=referral&utm_content=utsmannn/coroutine-broadcast&utm_campaign=Badge_Grade_Dashboard)
+
 ### Download
 ```groovy
 // add in your dependencies
