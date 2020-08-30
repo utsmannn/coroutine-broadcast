@@ -17,27 +17,13 @@
 
 ### Download
 ```groovy
-// add in your repository
-allprojects {
-    repositories {
-        google()
-        jcenter()
-
-        // this repo
-        maven { url 'https://dl.bintray.com/kucingapes/utsman' }
-    }
-}
-
 // add in your dependencies
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
     // kotlin coroutine required
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.8'
 
     // add broadcast lib
-    implementation 'com.utsman.broadcast:broadcast:1.0.0'
+    implementation 'com.utsman.broadcast:broadcast:1.0.1'
 }
 ```
 
