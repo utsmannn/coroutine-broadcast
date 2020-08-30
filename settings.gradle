@@ -1,0 +1,3 @@
+include ':broadcast'
+include ':app'
+rootProject.name = "Coroutine Broadcast"
