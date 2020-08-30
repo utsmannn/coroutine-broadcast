@@ -29,8 +29,7 @@ class Broadcast private constructor(private val coroutineScope: CoroutineScope) 
          * Use scope for your broadcast
          */
         fun with(coroutineScope: CoroutineScope): Broadcast {
-            if (broadcast == null) broadcast =
-                Broadcast(coroutineScope)
+            if (broadcast == null) broadcast = Broadcast(coroutineScope)
             return broadcast!!
         }
     }
@@ -45,6 +44,12 @@ class Broadcast private constructor(private val coroutineScope: CoroutineScope) 
     private suspend fun observerData(payload: (key: String, data: Any?) -> Unit) {
         channel.asFlow().collect {
             payload.invoke(it.key, it.data)
+        }
+    }
+
+    private suspend fun observerData(key: String, payload: (data: Any?) -> Unit) {
+        channel.asFlow().collect {
+            if (key == it.key) payload.invoke(it.data)
         }
     }
 
@@ -66,6 +71,17 @@ class Broadcast private constructor(private val coroutineScope: CoroutineScope) 
     fun observer(payload: (key: String, data: Any?) -> Unit) {
         coroutineScope.launch {
             observerData(payload)
+        }
+    }
+
+    /**
+     * Observer your data
+     * @param key: observing with your key
+     * @param payload: function to build lambda (higher function), data arrived here
+     */
+    fun observer(key: String, payload: (data: Any?) -> Unit) {
+        coroutineScope.launch {
+            observerData(key, payload)
         }
     }
 }

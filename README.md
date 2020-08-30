@@ -44,10 +44,20 @@ dependencies {
 ### Usage
 #### Observing data
 ```kotlin
+
+// single key
+Broadcast.with(GlobalScope).observer("your key") {  data ->
+    GlobalScope.launch(Dispatchers.Main) {
+        // data observable here in main scope
+        // update your ui or logic
+    }
+}
+
+// multiple key
 Broadcast.with(GlobalScope).observer { key, data ->
-    if (key == "your key") {
-        // data observable here
-        // udpate your ui or logic
+    when (key) {
+        "key 1" -> // data key 1
+        "key 2" -> // data key 2
     }
 }
 ```
@@ -61,6 +71,12 @@ Broadcast.with(GlobalScope).post("your key", "your data any type")
 ```kotlin
 class MainActivity : AppCompatActivity() {
     private val KEY = "message"
+    private val KEY2 = "uhuy"
+    private val KEY3 = "yoi"
+
+    data class SampleData(
+            var message: String
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,18 +86,43 @@ class MainActivity : AppCompatActivity() {
         val dataMessage = "This message send from broadcast"
         GlobalScope.launch {
             delay(2000)
-            // post data
             Broadcast.with(this).post(KEY, dataMessage)
+
+            delay(1000)
+            Broadcast.with(this).post(KEY2, "uhuy data")
+
+            // post data class
+            val data = SampleData(message = "message from data class")
+            delay(1000)
+            Broadcast.with(this).post(KEY3, data)
         }
     }
 
-    // observing data
     private fun observingBroadcast() {
+
+        // single key
+        Broadcast.with(GlobalScope).observer(KEY) { data ->
+            GlobalScope.launch(Dispatchers.Main) {
+                val message = data as String
+                tx_log.text = message
+            }
+        }
+
+        // multiple key
         Broadcast.with(GlobalScope).observer { key, data ->
-            if (key == KEY) {
-                GlobalScope.launch(Dispatchers.Main) {
-                    val message = data as String
-                    tx_log.text = message
+            when (key) {
+                KEY2 -> {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val message = data as String
+                        tx_log.text = message
+                    }
+                }
+                KEY3 -> {
+                    // observing data class
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val dataSample = data as SampleData
+                        tx_log.text = dataSample.message
+                    }
                 }
             }
         }
